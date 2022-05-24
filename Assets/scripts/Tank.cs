@@ -14,6 +14,7 @@ public class Tank : MonoBehaviour
     public string keyMoveReverse;
     public string keyRotateRight;
     public string keyRotateLeft;
+    public string shoot;
 
     bool moveForward = false;
     bool moveReverse = false;
@@ -23,6 +24,7 @@ public class Tank : MonoBehaviour
     float moveDeceleration = 0.20f;
     float moveSpeedMax = 2.5f;
 
+    bool shoot = false
     bool rotateRight = false;
     bool rotateLeft = false;
     float rotateSpeedRight = 0f;
@@ -95,6 +97,8 @@ public class Tank : MonoBehaviour
         {
             trackStop();
         }
+
+
 
     }
 
