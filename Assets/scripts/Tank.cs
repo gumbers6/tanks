@@ -34,6 +34,8 @@ public class Tank : MonoBehaviour
     float rotateDeceleration = 10f;
     float rotateSpeedMax = 130f;
 
+    public GameObject bulletprefab;
+
 
     /////*******************************************/////
     /////                 UPDATE                    /////  
@@ -101,9 +103,10 @@ public class Tank : MonoBehaviour
 
 
         isShooting = (Input.GetKeyDown(shoot)) ? true : isShooting;
+        isShooting = (Input.GetKeyUp(shoot)) ? false : isShooting;
         if (isShooting)
         {
-            // shoot for real life
+            Instantiate(bulletprefab);
         }
 
 
