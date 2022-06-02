@@ -16,4 +16,12 @@ public class bullet : MonoBehaviour
     {
         transform.Translate(Vector2.up*speed);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+        }
+    }
 }

@@ -35,7 +35,10 @@ public class Tank : MonoBehaviour
     float rotateSpeedMax = 130f;
 
     public GameObject bulletprefab;
-
+    float TIMESINCESHOOTING = 0f;
+    public GameObject shoot1;
+    public GameObject shoot2;
+    int alternating = 0;
 
     /////*******************************************/////
     /////                 UPDATE                    /////  
@@ -44,6 +47,7 @@ public class Tank : MonoBehaviour
     void Update()
     {
 
+        TIMESINCESHOOTING += Time.deltaTime;
         rotateLeft = (Input.GetKeyDown(keyRotateLeft)) ? true : rotateLeft;
         rotateLeft = (Input.GetKeyUp(keyRotateLeft)) ? false : rotateLeft;
         if (rotateLeft)
@@ -104,9 +108,19 @@ public class Tank : MonoBehaviour
 
         isShooting = (Input.GetKeyDown(shoot)) ? true : isShooting;
         isShooting = (Input.GetKeyUp(shoot)) ? false : isShooting;
-        if (isShooting)
+        if (isShooting && TIMESINCESHOOTING > 0.5f)
         {
-            Instantiate(bulletprefab);
+            if(alternating % 2 == 0)
+            {
+                Instantiate(bulletprefab, shoot1.transform.position, shoot1.transform.rotation);
+            }
+            else
+            {
+                Instantiate(bulletprefab, shoot2.transform.position, shoot2.transform.rotation);
+            }
+            
+            TIMESINCESHOOTING = 0;
+            alternating++;
         }
 
 
