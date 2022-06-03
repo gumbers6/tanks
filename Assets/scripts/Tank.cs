@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tank : MonoBehaviour
 {
@@ -22,15 +24,18 @@ public class Tank : MonoBehaviour
     float moveSpeedReverse = 0f;
     float moveAcceleration = 0.1f;
     float moveDeceleration = 0.20f;
-    float moveSpeedMax = 2.5f;
+    float moveSpeedMax = 1.5f;
 
+    // Health
+    public int health = 5;
+    public Image HealthBar;
 
     bool isShooting = false;
     bool rotateRight = false;
     bool rotateLeft = false;
     float rotateSpeedRight = 0f;
     float rotateSpeedLeft = 0f;
-    float rotateAcceleration = 4f;
+    float rotateAcceleration = 2.5f;
     float rotateDeceleration = 10f;
     float rotateSpeedMax = 130f;
 
@@ -140,6 +145,16 @@ public class Tank : MonoBehaviour
     {
         trackLeft.animator.SetBool("isMoving", false);
         trackRight.animator.SetBool("isMoving", false);
+    }
+
+    public void Hit()
+    {
+        health -= 1;
+        HealthBar.GetComponent<RectTransform>().localScale = new Vector3(health / 5f, 1,1);
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
