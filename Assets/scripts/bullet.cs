@@ -8,13 +8,13 @@ public class bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject,3f);
+        Destroy(gameObject, 3f);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(Vector2.up*speed);
+        transform.Translate(Vector2.up * speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,5 +29,16 @@ public class bullet : MonoBehaviour
             // hit player
             tank.Hit();
         }
+
+        if (collision.gameObject.tag == "obstacle")
+        {
+            Destroy (gameObject);
+        }
+
+        if (collision.gameObject.tag == "rebound")
+        {
+
+        }
     }
 }
+
